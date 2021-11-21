@@ -17,6 +17,7 @@ export function init() {
       inputEl.className = "input-style";
       inputEl.type = "text";
       inputEl.id = "text";
+      inputEl.placeholder = this.getAttribute("placeholder");
 
       style.textContent = `
            

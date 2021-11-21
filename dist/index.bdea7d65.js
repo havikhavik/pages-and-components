@@ -630,21 +630,26 @@ function init() {
             let shadow = this.attachShadow({
                 mode: "open"
             });
-            let titleEl = document.createElement('h1');
-            let style = document.createElement('style');
+            let titleEl = document.createElement("h1");
+            let style = document.createElement("style");
             titleEl.textContent = this.textContent;
-            titleEl.className = 'title-style';
+            titleEl.className = "title-style";
             style.textContent = `
            
             .title-style{
             text-align: start;
-            font-size: 52px;
+            font-size: 38px;
             margin: 0px;
             padding:0px;
             font-family: 'Poppins', sans-serif;
             font-weight: bold;
 
             }
+
+            @media (min-width: 600px) {
+                .title-style {
+                    font-size: 52px;
+                }
             `;
             shadow.appendChild(style);
             shadow.appendChild(titleEl);
@@ -931,12 +936,13 @@ function initPageA(params) {
     const div = document.createElement("div");
     div.innerHTML = `
     <custom-header></custom-header>
-    <custom-container>
+    <div class="container-style">
       <custom-title>Te damos la bienvenida a esta página</custom-title>
       <custom-richtext></custom-richtext>
       <custom-anothertext>Para continuar ingresa tu nombre.</custom-anothertext>
-      <custom-menu class="start-button"></custom-menu>
-    </custom-container>
+      <custom-input id="Nombre" placeholder="Ingresá tu Nombre"></custom-input>
+      <custom-button class="start-button">Comenzar</custom-button>
+    </div>
     <custom-footer></custom-footer>
 
   `;
@@ -957,23 +963,26 @@ function initPageB(params) {
     div.innerHTML = `
     <custom-header></custom-header>
 
-    <custom-container>
+    <div class="container-style">
     <custom-title>Necesitamos algunos datos más</custom-title>
     <custom-input id="Email"></custom-input>
     <custom-input id="Comida favorita"></custom-input>
     <custom-select id="Alguna de estas tres opciones"> </custom-select>
 
     <custom-button class="start-button">Continuar</custom-button>
-    <custom-back-btn> Volver </custom-back-btn>
-    </custom-container>
-
+    <custom-back-btn class="goback-button"> Volver </custom-back-btn>
+    </div>
     <custom-footer></custom-footer>
 
     `;
-    //   const buttonEl = div.querySelector(".start-button");
-    //   buttonEl.addEventListener("click", () => {
-    //     params.goTo("/thankyou");
-    //   });
+    const buttonEl = div.querySelector(".start-button");
+    buttonEl.addEventListener("click", ()=>{
+        params.goTo("/thankyou");
+    });
+    const goBackButtonEl = div.querySelector(".goback-button");
+    goBackButtonEl.addEventListener("click", ()=>{
+        params.goTo("/welcome");
+    });
     return div;
 }
 
@@ -987,16 +996,20 @@ function initPageC(params) {
     div.innerHTML = `
     <custom-header></custom-header>
 
-    <custom-container>
+    <div class="container-style">
     <custom-title>Gracias</custom-title>
     <custom-anothertext>Toda la informacion que nos brindaste es importante</custom-anothertext>
 
-    <custom-button>De nada</custom-button>
-    </custom-container>
+    <custom-button class="start-button">De nada</custom-button>
+    </div>
 
     <custom-footer></custom-footer>
 
     `;
+    const buttonEl = div.querySelector(".start-button");
+    buttonEl.addEventListener("click", ()=>{
+        params.goTo("/welcome");
+    });
     return div;
 }
 
@@ -1070,6 +1083,7 @@ function init() {
             inputEl.className = "input-style";
             inputEl.type = "text";
             inputEl.id = "text";
+            inputEl.placeholder = this.getAttribute("placeholder");
             style.textContent = `
            
             .label-style{

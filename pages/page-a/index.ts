@@ -3,12 +3,13 @@ export function initPageA(params) {
 
   div.innerHTML = `
     <custom-header></custom-header>
-    <custom-container>
+    <div class="container-style">
       <custom-title>Te damos la bienvenida a esta página</custom-title>
       <custom-richtext></custom-richtext>
       <custom-anothertext>Para continuar ingresa tu nombre.</custom-anothertext>
-      <custom-menu class="start-button"></custom-menu>
-    </custom-container>
+      <custom-input id="Nombre" placeholder="Ingresá tu Nombre"></custom-input>
+      <custom-button class="start-button">Comenzar</custom-button>
+    </div>
     <custom-footer></custom-footer>
 
   `;

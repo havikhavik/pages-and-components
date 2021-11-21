@@ -4,25 +4,29 @@ export function initPageB(params) {
   div.innerHTML = `
     <custom-header></custom-header>
 
-    <custom-container>
+    <div class="container-style">
     <custom-title>Necesitamos algunos datos más</custom-title>
     <custom-input id="Email"></custom-input>
     <custom-input id="Comida favorita"></custom-input>
     <custom-select id="Alguna de estas tres opciones"> </custom-select>
 
     <custom-button class="start-button">Continuar</custom-button>
-    <custom-back-btn> Volver </custom-back-btn>
-    </custom-container>
-
+    <custom-back-btn class="goback-button"> Volver </custom-back-btn>
+    </div>
     <custom-footer></custom-footer>
 
     `;
 
-  //   const buttonEl = div.querySelector(".start-button");
+  const buttonEl = div.querySelector(".start-button");
 
-  //   buttonEl.addEventListener("click", () => {
-  //     params.goTo("/thankyou");
-  //   });
+  buttonEl.addEventListener("click", () => {
+    params.goTo("/thankyou");
+  });
+  const goBackButtonEl = div.querySelector(".goback-button");
+
+  goBackButtonEl.addEventListener("click", () => {
+    params.goTo("/welcome");
+  });
 
   return div;
 }
