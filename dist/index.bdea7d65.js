@@ -923,7 +923,6 @@ function initRouter(container) {
     else handleRoute(location.pathname);
     window.onpopstate = function() {
         handleRoute(location.pathname);
-        console.log(location.pathname);
     };
 }
 
@@ -1084,6 +1083,7 @@ function init() {
             inputEl.type = "text";
             inputEl.id = "text";
             inputEl.placeholder = this.getAttribute("placeholder");
+            if (this.getAttribute("placeholder") == null) inputEl.placeholder = "";
             style.textContent = `
            
             .label-style{

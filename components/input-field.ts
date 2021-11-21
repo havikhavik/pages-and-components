@@ -19,6 +19,10 @@ export function init() {
       inputEl.id = "text";
       inputEl.placeholder = this.getAttribute("placeholder");
 
+      if (this.getAttribute("placeholder") == null) {
+        inputEl.placeholder = "";
+      }
+
       style.textContent = `
            
             .label-style{
